@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../models/task_model.dart';
 import '../screens/edit_task.dart';
 
-
 class TaskItem extends StatelessWidget {
   const TaskItem({
     Key? key,
@@ -18,23 +17,21 @@ class TaskItem extends StatelessWidget {
       title: Text(
         taskModel.title,
         style: TextStyle(
-            decoration: taskModel.isDone
-                ? TextDecoration.lineThrough
-                : TextDecoration.none),
+          decoration: taskModel.isDone
+              ? TextDecoration.lineThrough
+              : TextDecoration.none,
+        ),
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Checkbox(
             onChanged: (value) {
-    
-           },
+              
+            },
             value: taskModel.isDone,
           ),
-          IconButton(
-              onPressed: () {
-              },
-              icon: const Icon(Icons.delete)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.delete)),
           IconButton(
               onPressed: () {
                 Navigator.push(

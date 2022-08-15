@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bloc/task_bloc.dart';
 import '../models/task_model.dart';
-
 
 class CreateTask extends StatefulWidget {
   const CreateTask({Key? key}) : super(key: key);
@@ -16,7 +17,11 @@ class _CreateTaskState extends State<CreateTask> {
   late TextEditingController _textEditingController;
 
   void _submit() {
-    if (_formKey.currentState!.validate()) {}
+    if (_formKey.currentState!.validate()) {
+      context.read<TaskBloc>().add(AddTask(
+          taskModel: TaskModel(title: _textEditingController.text, id: 3)));
+      Navigator.pop(context);
+    }
   }
 
   @override
@@ -35,9 +40,7 @@ class _CreateTaskState extends State<CreateTask> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          
-        },
+        onPressed: _submit,
         child: const Icon(Icons.add),
       ),
       appBar: AppBar(
