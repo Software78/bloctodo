@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/task_model.dart';
+import '../provider/task_provider.dart';
 import '../screens/edit_task.dart';
 
 class TaskItem extends StatelessWidget {
@@ -27,11 +29,17 @@ class TaskItem extends StatelessWidget {
         children: [
           Checkbox(
             onChanged: (value) {
-              
+              Provider.of<TaskProvider>(context, listen: false)
+                  .toggleTask(taskModel);
             },
             value: taskModel.isDone,
           ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.delete)),
+          IconButton(
+              onPressed: () {
+                Provider.of<TaskProvider>(context, listen: false)
+                    .deleteTask(taskModel);
+              },
+              icon: const Icon(Icons.delete)),
           IconButton(
               onPressed: () {
                 Navigator.push(

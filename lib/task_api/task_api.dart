@@ -8,7 +8,7 @@ class TaskApi {
   static final TaskApi instance = TaskApi._privateConstructor();
 
   List<TaskModel> _tasks = [
-    TaskModel(title: "Initial Task", isDone: false, id: 0),
+    TaskModel(title: "Initial Task", id: 0),
     TaskModel(title: "New Task", isDone: true, id: 1),
     TaskModel(title: "Another Task", id: 2),
     TaskModel(title: "This Task", id: 3, isDone: true),
@@ -28,7 +28,7 @@ class TaskApi {
     taskModel.title = newTitle;
   }
 
-  deleteTask(int id) {
-    tasks.removeAt(id);
+  deleteTask(TaskModel model) {
+    tasks.removeWhere((element)=> element.title == model.title );
   }
 }
