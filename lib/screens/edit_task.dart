@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bloc/todo_bloc.dart';
 import '../models/task_model.dart';
 
 class EditTaskView extends StatefulWidget {
@@ -28,6 +30,9 @@ class _EditTaskViewState extends State<EditTaskView> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          context.read<TodoBloc>().add(
+              EditTodo(taskModel: widget.taskModel, title: _controller.text));
+          Navigator.pop(context);
         },
         child: const Icon(Icons.edit),
       ),

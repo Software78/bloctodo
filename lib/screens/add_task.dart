@@ -1,8 +1,8 @@
+import 'package:bloc_todo/models/task_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/task_bloc.dart';
-import '../models/task_model.dart';
+import '../bloc/todo_bloc.dart';
 
 class CreateTask extends StatefulWidget {
   const CreateTask({Key? key}) : super(key: key);
@@ -18,8 +18,8 @@ class _CreateTaskState extends State<CreateTask> {
 
   void _submit() {
     if (_formKey.currentState!.validate()) {
-      context.read<TaskBloc>().add(AddTask(
-          taskModel: TaskModel(title: _textEditingController.text, id: 3)));
+      context.read<TodoBloc>().add(AddTodo(
+          taskModel: TaskModel(title: _textEditingController.text, id: 5)));
       Navigator.pop(context);
     }
   }
